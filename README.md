@@ -2,16 +2,14 @@
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
-* Navn Navnesen, S123456, s123456@oslomet.no
-* ...
+* Tiril Lundgaard Baklien, S360821, s360821@oslomet.no
+* Eivind Skjolden, S362087, s362087@oslomet.no
 
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Per har hatt hovedansvar for oppgave 1, 3, og 5. 
-* Else har hatt hovedansvar for oppgave 2, 4, og 6. 
-* Fatima har hatt hovedansvar for oppgave 7 og 8. 
-* Vi har i fellesskap løst oppgave 10. 
+* Eivind har hatt hovedansvar for oppgaver med oddetall. 
+* Tiril har hatt hovedansvar for oppgaver med partall.
 
 # Oppgavebeskrivelse
 
