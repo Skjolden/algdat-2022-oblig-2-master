@@ -100,7 +100,10 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T hent(int indeks) {
-        throw new UnsupportedOperationException();
+        // Sjekker at indeksen er innenfor listen
+        indeksKontroll(indeks, false);
+        // Henter verdien til noden på "indeks"
+        return (finnNode(indeks)).verdi;
     }
 
     @Override
