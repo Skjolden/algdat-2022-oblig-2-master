@@ -182,6 +182,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    // Hjelpemetoden til opg 3
+    private Node<T> finnNode(int indeks) {
+        Node<T> denne;
+        // Finner noden ved neste-pekere fra hode
+        if (indeks < antall/2) {
+            denne = hode;
+            while (indeks > 0) {
+                denne = denne.neste;
+                indeks--;
+            }
+        // Finner noden ved forrige-pekere fra halen
+        } else {
+            denne = hale;
+            while (indeks < antall) {
+                denne = denne.forrige;
+                indeks++;
+            }
+        }
+        return denne;
+    }
+
 } // class DobbeltLenketListe
 
 
