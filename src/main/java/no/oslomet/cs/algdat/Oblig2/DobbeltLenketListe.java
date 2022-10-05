@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 
@@ -70,7 +71,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public Liste<T> subliste(int fra, int til) {
-        throw new UnsupportedOperationException();
+        fratilKontroll(antall, fra, til);
+        DobbeltLenketListe<T> nySubliste = new DobbeltLenketListe<>();
+        int tilStart = fra;
+        Node<T> denne = hode;
+        // Flytter frem til første node som skal med
+        while (tilStart > 0) {
+            denne = denne.neste;
+            tilStart--;
+        }
+        // Legger inn noder fra-til
+        for (int i = fra; i < til; i++) {
+            nySubliste.leggInn(denne.verdi);
+            denne = denne.neste;
+            nySubliste.antall++; // Usikker
+        }
+        return nySubliste;
     }
 
     @Override
@@ -211,6 +227,22 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         }
         return denne;
+    }
+
+    // fratilKontroll() fra kompendiet
+    private static void fratilKontroll(int antall, int fra, int til)
+    {
+        if (fra < 0)                               // fra er negativ
+            throw new IndexOutOfBoundsException
+                    ("fra(" + fra + ") er negativ!");
+
+        if (til > antall)                          // til er utenfor listen
+            throw new IndexOutOfBoundsException
+                    ("til(" + til + ") > tablengde(" + antall + ")");
+
+        if (fra > til)                             // fra er større enn til
+            throw new IllegalArgumentException
+                    ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
     }
 
 } // class DobbeltLenketListe
