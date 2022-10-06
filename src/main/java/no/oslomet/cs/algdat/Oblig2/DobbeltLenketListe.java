@@ -39,7 +39,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        throw new UnsupportedOperationException();
+        /*throw new UnsupportedOperationException();*/
     }
 
     public DobbeltLenketListe(T[] a) {
@@ -109,42 +109,39 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Sjekker at det er en gyldig verdi
         Objects.requireNonNull(verdi, "Det kan ikke være en null-verdi!");
         // Sjekker at indeks er gyldig
-        if (antall >= indeks && indeks >= 0) {
-            // Nytt node-objekt
-            Node<T> nyNode = new Node<>(verdi);
-            // Dersom noden er den første verdien i en tom liste:
-            if (hode == null) {
-                hode = nyNode;
-                hode.neste = hale;
-                hale.forrige = hode;
-                hode.forrige = null;
-                hale.neste = null;
-            // Dersom noden plasseres først i listen
-            } else if (indeks == 0) {
-                hode.forrige = nyNode;
-                nyNode.neste = hode;
-                hode = nyNode;
-                hode.forrige = null;
-            // Dersom noden plasseres bakerst i listen
-            } else if (indeks == antall) {
-                hale.neste = nyNode;
-                nyNode.forrige = hale;
-                hale = nyNode;
-                hale.neste = null;
-            // Dersom noden plasseres mellom 2 noder
-            } else {
-                // Plassen til den gamle noden som den nye noden får
-                Node<T> gammelIndeks = finnNode(indeks);
-                gammelIndeks.forrige.neste = nyNode;
-                nyNode.neste = gammelIndeks;
-                nyNode.forrige = gammelIndeks.forrige;
-                gammelIndeks.forrige = nyNode;
-            }
-            antall++;
-            endringer++;
+        indeksKontroll(indeks, true);
+        // Nytt node-objekt
+        Node<T> nyNode = new Node<>(verdi);
+        // Dersom noden er den første verdien i en tom liste:
+        if (hode == null) {
+            hode = nyNode;
+            hode.neste = hale;
+            hale.forrige = hode;
+            hode.forrige = null;
+            hale.neste = null;
+        // Dersom noden plasseres først i listen
+        } else if (indeks == 0) {
+            hode.forrige = nyNode;
+            nyNode.neste = hode;
+            hode = nyNode;
+            hode.forrige = null;
+        // Dersom noden plasseres bakerst i listen
+        } else if (indeks == antall) {
+            hale.neste = nyNode;
+            nyNode.forrige = hale;
+            hale = nyNode;
+            hale.neste = null;
+        // Dersom noden plasseres mellom 2 noder
         } else {
-            throw new IndexOutOfBoundsException("Indeks er ikke gyldig verdi!");
+            // Plassen til den gamle noden som den nye noden får
+            Node<T> gammelIndeks = finnNode(indeks);
+            gammelIndeks.forrige.neste = nyNode;
+            nyNode.neste = gammelIndeks;
+            nyNode.forrige = gammelIndeks.forrige;
+            gammelIndeks.forrige = nyNode;
         }
+        antall++;
+        endringer++;
     }
 
     @Override
