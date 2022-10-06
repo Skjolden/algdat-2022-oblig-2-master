@@ -142,6 +142,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
             antall++;
             endringer++;
+        } else {
+            throw new IndexOutOfBoundsException("Indeks er ikke gyldig verdi!");
         }
     }
 
