@@ -189,7 +189,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException();
+        Node<T> denne = hode;
+        // Sjekker at listen ikke allerede er tom
+        if (antall > 0) {
+            // Tømmer listen for noder så lenge det er mer enn en node
+            while (antall > 1) {
+                denne.forrige = null;
+                denne = denne.neste;
+                denne.forrige.neste = null;
+                denne.forrige.verdi = null;
+                antall--;
+            }
+            // Tømmer siste noden og resetter hode og hale verdiene
+            denne.forrige = null;
+            denne.neste = null;
+            denne.verdi = null;
+            hode = null;
+            hale = null;
+            endringer++;
+        } else {
+            throw new IllegalArgumentException("Listen er allerede tom!");
+        }
     }
 
     @Override
