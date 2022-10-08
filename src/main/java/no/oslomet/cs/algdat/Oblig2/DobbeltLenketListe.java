@@ -101,7 +101,34 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(verdi, "Null-verdier er ikke tillatt");
+
+        Node<T> nyNode = new Node<>(verdi);
+        //Hvis listen er tom
+        if(antall==0){
+            hode = nyNode;
+            hale = nyNode;
+            hode.neste = null;
+            hode.forrige = null;
+            hale.neste = null;
+            hale.forrige = null;
+        }
+        //Hvis listen ikke er tom
+        else{
+            //Mellomlagrer forrige hale
+            Node lagre = hale;
+            //Legger ny node bakerst
+            hale = nyNode;
+            hale.neste = null;
+            hale.forrige = lagre;
+            //Gammel hale får ny peker til ny hale
+            lagre.neste = hale;
+        }
+
+        antall++;
+        endringer++;
+
+        return true;
     }
 
     @Override
@@ -211,11 +238,49 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException();
+        StringBuilder utskrift = new StringBuilder();
+        utskrift.append("[");
+
+        //Hvis listen ikke er tom
+        if(!tom()){
+            //Legger til verdien til hode
+            utskrift.append(hode.verdi);
+
+            //Hjelpevariabel
+            Node<T> node = hode;
+
+            //Legger til de neste nodene (så lenge antall er større enn 1)
+            for(int i=1; i < antall; i++){
+                node = node.neste;      //Neste node
+                utskrift.append(", ").append(node.verdi);
+            }
+        }
+
+        utskrift.append("]");
+        return utskrift.toString();
     }
 
     public String omvendtString() {
-        throw new UnsupportedOperationException();
+        StringBuilder utskrift = new StringBuilder();
+        utskrift.append("[");
+
+        //Hvis listen ikke er tom
+        if(!tom()){
+            //Legger til verdien til hale
+            utskrift.append(hale.verdi);
+
+            //Hjelpevariabel
+            Node<T> node = hale;
+
+            //Legger til de neste nodene (så lenge antall er større enn 1)
+            for(int i=1; i < antall; i++){
+                node = node.forrige;      //Neste node
+                utskrift.append(", ").append(node.verdi);
+            }
+        }
+
+        utskrift.append("]");
+        return utskrift.toString();
     }
 
     @Override
