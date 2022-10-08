@@ -173,7 +173,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
+        //Hvis verdien finnes:
+        if(indeksTil(verdi)!= -1){
+            return true;
+        }
+
+        //Hvis verdien ikke finnes:
+        return false;
     }
 
     @Override
@@ -186,7 +192,25 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        //hvis verdien er null
+        if(verdi == null){
+            return -1;
+        }
+
+        //Hjelpevariabel
+        Node <T> node = hode;
+
+        //søker etter verdi
+        for(int i = 0; i < antall; i++){
+            //Hvis nodens verdi er lik parameter-verdien, returner i (=indeksen)
+            if(node.verdi.equals(verdi)){
+                return i;
+            }
+            node = node.neste;
+        }
+
+        //Hvis verdien ikke er funnet:
+        return -1;
     }
 
     @Override
