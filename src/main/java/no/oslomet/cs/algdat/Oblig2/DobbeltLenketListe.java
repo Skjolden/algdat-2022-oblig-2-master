@@ -265,26 +265,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
-        StringBuilder utskrift = new StringBuilder();
-        utskrift.append("[");
-
-        //Hvis listen ikke er tom
-        if(!tom()){
-            //Legger til verdien til hode
-            utskrift.append(hode.verdi);
-
-            //Hjelpevariabel
-            Node<T> node = hode;
-
-            //Legger til de neste nodene (så lenge antall er større enn 1)
-            for(int i=1; i < antall; i++){
-                node = node.neste;      //Neste node
-                utskrift.append(", ").append(node.verdi);
+        StringBuilder ut = new StringBuilder("[");
+        Node<T> denne = hode;
+        // Sjekker at noden har verdi
+        if (denne != null) {
+            // Legger til alle verdiene
+            while(denne != hale) {
+                ut.append(denne.verdi);
+                // Legger til komma, kun om det er flere noder
+                if (denne.neste != null) {
+                    ut.append(", ");
+                }
+                denne = denne.neste;
             }
+            // Legger til siste verdi uten komma etter
+            ut.append(denne.verdi);
         }
-
-        utskrift.append("]");
-        return utskrift.toString();
+        ut.append("]");
+        return ut.toString();
     }
 
     public String omvendtString() {
