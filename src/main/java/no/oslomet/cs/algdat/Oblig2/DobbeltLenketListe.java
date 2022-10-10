@@ -256,6 +256,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             denne.verdi = null;
             hode = null;
             hale = null;
+            antall--;
             endringer++;
         } else {
             throw new IllegalArgumentException("Listen er allerede tom!");
