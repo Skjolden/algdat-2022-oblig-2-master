@@ -219,10 +219,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         indeksKontroll(indeks, false);
         // Sjekker at verdien ikke er null
         Objects.requireNonNull(nyverdi, "Verdien kan ikke være null!");
+        T gammelVerdi = finnNode(indeks).verdi;
+        // Endrer verdien på noden
+        finnNode(indeks).verdi = nyverdi;
         // Øker endringer
         endringer++;
-        // Endrer verdien på noden
-        return finnNode(indeks).verdi = nyverdi;
+        return gammelVerdi;
     }
 
     @Override
