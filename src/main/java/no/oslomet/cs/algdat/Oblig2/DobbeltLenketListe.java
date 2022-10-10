@@ -355,8 +355,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     // Hjelpemetoden til opg 3
     private Node<T> finnNode(int indeks) {
         Node<T> denne;
+
         // Finner noden ved neste-pekere fra hode
-        if (indeks < antall/2) {
+        if (indeks < antall/2 | antall < 2) {
             denne = hode;
             while (indeks > 0) {
                 denne = denne.neste;
@@ -365,7 +366,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Finner noden ved forrige-pekere fra halen
         } else {
             denne = hale;
-            while (indeks < antall) {
+            while (indeks < antall-1) {
                 denne = denne.forrige;
                 indeks++;
             }
