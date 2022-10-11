@@ -51,3 +51,16 @@ hodet blir satt som den nye hodens neste. Om noden plasseres bakerst settes den 
 den nye halen og den gamle halen sin neste blir den nye noden. Dersom noden plasseres
 mellom to noder settes forrige og neste pekerne til den nye rekken ved å alltid
 passe på å ha minst en peker som holder listen sammen. Antall og endringer økes.
+
+opg 6
+
+I oppgave 7 metode nulstill() brukte vi 1. måte. Den sjekker at listen ikke er tom.
+Deretter fjerner den alle nodene og pekerne og reduserer antall helt til det er en igjen.
+Etter det fjerner den siste noden og setter hode og hale verdiene til null. Antall
+reduseres en siste gang og endringer økes.
+På å fjerne 1 000 000 noder så bruker:
+1. måte ~5 ms
+2. måte ~9 ms
+Derfor enklere å bare bruke fjern(indeks) metoden i en loop ettersom at det er
+minimale forskjeller på tiden. (Tiden er gjennomsnittet av 100 forsøk)
+

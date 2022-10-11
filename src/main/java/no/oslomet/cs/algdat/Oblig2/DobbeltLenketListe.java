@@ -331,6 +331,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> denne = hode;
         // Sjekker at listen ikke allerede er tom
         if (antall > 0) {
+            // 1. Måte
             // Tømmer listen for noder så lenge det er mer enn en node
             while (antall > 1) {
                 denne.forrige = null;
@@ -347,6 +348,13 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hale = null;
             antall--;
             endringer++;
+            /*
+            // 2. Måte
+            for (int i = antall-1; i >= 0 ; i--) {
+                fjern(i);
+            }
+            endringer++;
+            */
         } else {
             throw new IllegalArgumentException("Listen er allerede tom!");
         }
