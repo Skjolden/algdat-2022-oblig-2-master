@@ -139,6 +139,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         // Dersom noden er den første verdien i en tom liste:
         if (hode == null) {
             hode = nyNode;
+            hale = nyNode;
             hode.neste = hale;
             hale.forrige = hode;
             hode.forrige = null;
