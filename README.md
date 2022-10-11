@@ -20,7 +20,13 @@ definert liste ved å sørge for å kun legge inn verdier som ikke er null og
 registrerer antall noder som blir lagt til underveis. Nodene får sine neste- og
 forrigepekere satt fortløpende.
 
-I oppgave 2 så brukte vi en ... til å ...
+I oppgave 2 metode leggInn(T verdi) sjekkes det at verdien ikke er null. Så sjekkes
+det om listen er tom eller ikke. Hvis listen er tom legges noden inn som
+hode og hale uten forrige og neste pekere. Dersom listen ikke er tom lagres halen
+midlertidig og endres til den nye noden, den tidligere halen settes som den nye halen
+sin forrige og gammel hale sin neste blir den nye halen. Nye halen får null som neste.
+Antall og endringer øker. Boolean true verdi blir returnert dersom den nye noden ble
+lagt til.
 
 I oppgave 3 metode finnNode(int indeks) går vi utfra om noden er plassert i første
 eller andre halvdel av listen og beveger oss derretter frem til noden fra hodet
@@ -34,3 +40,14 @@ endringer har økt med en.
 Metoden subliste(int fra, int til) tester at fra-til er et gyldig intervall. Starter
 med å bevege seg frem til første noden i intervallet og legger til alle nodene fra
 fra-indeks til til-indeks.
+
+opg 4
+
+I oppgave 5 metode leggInn(int indeks, T verdi) sjekkes det at verdien ikke er null
+og at indeks er gyldig. Så sjekkes det om listen er tom eller ikke. Hvis listen er
+tom legges noden inn som hode og hale uten forrige og neste pekere. Dersom listen
+ikke er tom og noden skal plasseres først lagres den som nytt hode og forrige 
+hodet blir satt som den nye hodens neste. Om noden plasseres bakerst settes den som
+den nye halen og den gamle halen sin neste blir den nye noden. Dersom noden plasseres
+mellom to noder settes forrige og neste pekerne til den nye rekken ved å alltid
+passe på å ha minst en peker som holder listen sammen. Antall og endringer økes.
