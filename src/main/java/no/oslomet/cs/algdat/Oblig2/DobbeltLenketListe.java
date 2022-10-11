@@ -229,12 +229,103 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
+        if(verdi==null){
+            return false;
+        }
+
+        //Hvis liste ikke er tom??
+        Node<T> node = null;   //Hjelpevariabel
+        Node<T> teller = hode;   //Teller, starter fra hodet
+
+        //Så lenge telleren ikke peker null
+        while(teller != null){
+            //hvis tellerens verdi er lik parameterverdien
+            if(teller.verdi.equals(verdi)){
+                node = teller;      //Noden som skal fjernes
+                break;      //Verdi funnet, stopper løkken
+            }
+            teller = teller.neste;    //Sjekker neste verdi i neste gjennomgang
+        }
+
+        //Hvis node-verdien ikke er funnet
+        if(node == null){
+            return false;
+        }
+
+        //
+
+        //Hvis det er mer enn én node i liste:
+        if(antall != 1){
+            //Hvis noden som skal fjenes er første verdien
+            if(node == hode){
+                hode = hode.neste;
+                hode.forrige = null;
+            }
+            //Hvis noden som skal fjernes er siste verdien
+            else if(node == hale){
+                hale = hale.forrige;
+                hale.neste = null;
+            }
+            else{
+                Node<T> p = node.forrige;   //Noden foran noden som skal fjernes
+                Node<T> r = node.neste;     //Noden etter noden som skal fjernes
+                p.neste = node.neste;
+                r.forrige = node.forrige;
+            }
+        }
+        //Hvis det kun er én node:
+        else{
+            hode = null;
+            hale = null;
+        }
+
+        endringer++;
+        antall--;
+
+        return true;
     }
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        //Sjekker om indeks er større enn null, og mindre enn antall
+        indeksKontroll(indeks, false);
+
+        T node;   //Hjelpevariabel
+
+        //Hvis første verdi skal fjernes
+        if (indeks == 0) {
+            node = hode.verdi;  //Tar vare på verdien
+            if(antall > 1){     //hvis flere enn 1 verdi i listen
+                hode = hode.neste;
+                hode.forrige = null;
+            }else{      //Hvis bare 1 verdi i listen
+                hode = null;
+                hale = null;
+            }
+
+        }
+        //Hvis siste verdi skal fjernes
+        else if (indeks == antall - 1) {
+            node = hale.verdi;  //Tar vare på verdien
+            hale = hale.forrige;
+            hale.neste = null;
+        }
+        //hvis en midt-verdi skal fjernes
+        else {
+            Node<T> q = finnNode(indeks);     //noden som skal fjernes
+            node = q.verdi; //Tar vare på verdien
+            Node<T> p = q.forrige;        //Noden før
+            Node<T> r = q.neste;     //Noden etter
+
+            //Korrigerer pekere
+            p.neste = q.neste;
+            r.forrige = q.forrige;
+        }
+
+        antall--;
+        endringer++;
+
+        return node;
     }
 
     @Override
@@ -353,7 +444,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
-    // Hjelpemetoden til opg 3
+    // Hjelpemetoden til oppg 3
     private Node<T> finnNode(int indeks) {
         Node<T> denne;
 
