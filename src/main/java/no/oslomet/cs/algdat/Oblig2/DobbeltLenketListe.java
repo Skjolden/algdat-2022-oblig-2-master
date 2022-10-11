@@ -81,7 +81,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         for (int i = fra; i < til; i++) {
             nySubliste.leggInn(denne.verdi);
             denne = denne.neste;
-            nySubliste.antall++; // Usikker
+            nySubliste.antall++;
         }
         return nySubliste;
     }

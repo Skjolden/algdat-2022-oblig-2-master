@@ -31,3 +31,6 @@ Metoden oppdater(int indeks, T nyverdi) sjekker først at indeksen er innenfor l
 og at nyverdi ikke er null. Deretter lagrer vi den gamle verdien til noden og 
 setter den nye verdien til noden. Til slutt returneres den gamle verdien og antall 
 endringer har økt med en.
+Metoden subliste(int fra, int til) tester at fra-til er et gyldig intervall. Starter
+med å bevege seg frem til første noden i intervallet og legger til alle nodene fra
+fra-indeks til til-indeks.
