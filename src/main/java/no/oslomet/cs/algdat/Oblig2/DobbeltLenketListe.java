@@ -231,7 +231,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return false;
         }
 
-        //Hvis liste ikke er tom??
         Node<T> node = null;   //Hjelpevariabel
         Node<T> teller = hode;   //Teller, starter fra hodet
 
@@ -250,11 +249,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             return false;
         }
 
-        //
-
         //Hvis det er mer enn én node i liste:
         if(antall != 1){
-            //Hvis noden som skal fjenes er første verdien
+            //Hvis noden som skal fjernes er første verdien
             if(node == hode){
                 hode = hode.neste;
                 hode.forrige = null;
